@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feliz Cumpleaños ❤️</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: url('fondo.gif') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        text-shadow: 2px 2px 8px #5a2a27;
+    }
+
+    /* Carrusel vertical */
+    .carousel-container {
+        height: 320px;
+        width: 300px;
+        margin: 20px auto;
+        overflow: hidden;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(90,42,39,0.3);
+        background: rgba(0,0,0,0.3);
+    }
+    .carousel-slide {
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.7s ease-in-out;
+    }
+    .carousel-slide img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        border-radius: 15px 15px 0 0;
+    }
+
+    /* Carta */
+    .card-text {
+        max-width: 400px;
+        margin: 20px auto;
+        font-size: 1.1em;
+        line-height: 1.5;
+        background: rgba(255, 230, 240, 0.8);
+        border-radius: 15px;
+        padding: 15px 25px;
+        box-shadow: 0 4px 15px rgba(90,42,39,0.2);
+        color: #5a2a27;
+    }
+
+    /* Video más pequeño */
+    video {
+        width: 80%;
+        max-width: 500px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(90,42,39,0.3);
+        margin-top: 20px;
+    }
+
+    /* Botón de música */
+    #play-music {
+        background: linear-gradient(45deg, #ff4d6d, #ff99c8);
+        border: none;
+        padding: 12px 25px;
+        border-radius: 25px;
+        color: white;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: 20px;
+    }
+    #play-music:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    audio { display: none; }
+
+    /* Carrusel horizontal de palabras */
+    .word-carousel {
+        overflow: hidden;
+        white-space: nowrap;
+        background: rgba(255, 230, 240, 0.8);
+        border-radius: 15px;
+        padding: 10px 0;
+        margin: 30px auto;
+        max-width: 90%;
+        box-shadow: 0 4px 15px rgba(90,42,39,0.3);
+    }
+
+    .word-track {
+        display: inline-block;
+        padding-left: 100%;
+        animation: scrollWords 20s linear infinite;
+    }
+
+    .word-track span {
+        display: inline-block;
+        margin: 0 30px;
+        font-size: 1.3em;
+        color: #5a2a27;
+        font-weight: bold;
+    }
+
+    @keyframes scrollWords {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+</head>
+<body>
+
+<h1>Feliz Cumpleaños, mi amor 💖</h1>
+
+<!-- Carrusel vertical -->
+<div class="carousel-container">
+    <div class="carousel-slide" id="carousel-slide">
+        <img src="foto1.jpg" alt="Foto 1" />
+        <img src="foto2.jpg" alt="Foto 2" />
+        <img src="foto3.jpg" alt="Foto 3" />
+        <img src="foto4.jpg" alt="Foto 4" />
+        <img src="foto5.jpg" alt="Foto 5" />
+        <img src="foto6.jpg" alt="Foto 6" />
+    </div>
+</div>
+
+<!-- Carta -->
+<div class="card-text">
+    <p>Mi querida Nicol Bedoya,</p>
+    <p>
+        Hoy celebro no solo tu cumpleaños, sino también la alegría de tenerte en mi vida. Gracias por ser mi compañera, mi complemento y mi fuerza cada día.  
+        Te amo con todo mi corazón y deseo que este nuevo año te traiga toda la felicidad que mereces.
+    </p>
+    <p>Con todo mi amor,</p>
+    <p>Duperson y Dupersito</p>
+</div>
+
+<!-- Video reducido -->
+<video controls>
+    <source src="cumple_video.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+</video>
+
+<!-- Botón de música -->
+<button id="play-music">🎵 Reproducir música</button>
+<audio id="audio" loop>
+    <source src="te_voy_a_amar.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Carrusel horizontal de palabras -->
+<div class="word-carousel">
+    <div class="word-track">
+        <span>Amor ❤️</span>
+        <span>Felicidad 🌸</span>
+        <span>Confianza 💖</span>
+        <span>Complicidad ✨</span>
+        <span>Apoyo 🤝</span>
+        <span>Crecimiento 🌱</span>
+        <span>Pasión 🔥</span>
+        <span>Gratitud 🌷</span>
+    </div>
+</div>
+
+<script>
+    // Carrusel vertical automático
+    const slide = document.getElementById('carousel-slide');
+    const images = slide.querySelectorAll('img');
+    let index = 0;
+    const total = images.length;
+
+    function showSlide(i) {
+        if (i < 0) index = total - 1;
+        else if (i >= total) index = 0;
+        else index = i;
+        slide.style.transform = `translateY(${-index * 320}px)`;
+    }
+
+    setInterval(() => {
+        index++;
+        showSlide(index);
+    }, 3000);
+
+    showSlide(index);
+
+    // Botón de música
+    const audio = document.getElementById('audio');
+    const btn = document.getElementById('play-music');
+    btn.addEventListener('click', () => {
+        audio.play();
+        btn.style.display = 'none'; // Oculta el botón
+    });
+</script>
+
+</body>
+</html>
